@@ -14,7 +14,7 @@ Here are some reasons why you might want to use CRDs:
 
 ## Prerequisites
 
-Before we begin, ensure you have the following:
+Ensure you have the following:
 
 * Basic understanding of Kubernetes
 * Kubernetes cluster with kubectl installed
