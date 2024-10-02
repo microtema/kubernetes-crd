@@ -20,6 +20,75 @@ Before we begin, ensure you have the following:
 * Kubernetes cluster with kubectl installed
 * Docker (Building Controller Image)
 
+## Context & Scope
+
+![Context & Scope](./docs/images/Context_Scope.png)
+
+### **Context of Kubernetes Custom Resource Definitions (CRDs):**
+
+1. **Custom Resource Definition (CRD):** 
+   - CRDs allow you to extend the Kubernetes API with new resource types. This is the starting point in the diagram, where the CRD is defined and applied through `kubectl` commands.
+   - **Define and Apply CDR:** In this section, a Custom Resource Definition (CDR) is defined and applied, establishing the blueprint for the custom resource in Kubernetes.
+
+2. **Custom Resource Instance:**
+   - Once a CRD is defined, you create instances of this custom resource, which is referred to as Custom Resource Instance (CDI).
+   - The user interacts with the Kubernetes API through `kubectl` to define and apply custom resource instances based on the CRD.
+
+3. **Custom Controller:**
+   - A custom controller watches for events related to the custom resources (CR) and takes appropriate actions. The diagram shows multiple steps involved in creating, watching, and handling custom controllers.
+   - The custom controller logic is usually implemented in SDKs such as Python or Go. It monitors the CRs and performs tasks based on the desired state.
+
+4. **Role-Based Access Control (RBAC):**
+   - Access to the resources and controllers is managed using Kubernetes RBAC policies. Role bindings, service accounts, and cluster roles are defined to control access to various Kubernetes resources.
+   - The diagram highlights how the access control components are tied together with the service account, role binding, and cluster roles.
+
+5. **Custom Controller Image:**
+   - The custom controller's functionality is encapsulated in a Docker image. This part of the diagram showcases how the Docker components are utilized to package and distribute the custom controller, including the Dockerfile, Docker image, and code (`custom_controller.py`).
+   - Docker Hub is used for image distribution, making the custom controller deployable across different Kubernetes clusters.
+
+### **Scope of the Diagram:**
+
+This diagram represents the full lifecycle of defining and managing Kubernetes custom resources. The scope includes:
+
+- **Resource Definitions:** Establishing new resource types (CRD).
+- **Instance Creation:** Managing instances of custom resources.
+- **Custom Controllers:** Automating the management of these custom resources via custom controllers.
+- **Access Controls:** Using RBAC to secure access.
+- **Packaging and Deployment:** Using Docker for packaging and deploying the controller.
+
+## Runtime View
+
+![Runtime View](./docs/images/Runtime_View.png)
+
+### **Context of the Runtime View for Custom Resources (CR):**
+
+This runtime view showcases the event-driven workflow that occurs when a Kubernetes **Custom Resource (CR) event** is triggered. The diagram uses BPMN (Business Process Model and Notation) symbols to represent the steps and decisions taken based on the event type.
+
+#### **Steps in the Process:**
+
+1. **On CR Event:**
+   - The process begins with the occurrence of a **Custom Resource Event**. This could be any event related to the custom resource (such as creation, modification, or deletion).
+
+2. **CR Event Type Decision:**
+   - The event type is evaluated to determine whether it was an **ADDED** or **DELETED** event.
+
+3. **Event Handling Branches:**
+   - Based on the event type, the workflow branches into two possible actions:
+     - **If ADDED:** The process initiates the creation of a **ConfigMap**.
+     - **If DELETED:** The process initiates the deletion of the **ConfigMap**.
+
+4. **Completion of Action:**
+   - After either the **Create ConfigMap** or **Delete ConfigMap** task is completed, the flow converges, leading to the final completion of the process.
+
+#### **Key Components:**
+- **ConfigMap:** A Kubernetes resource used to store configuration data in key-value pairs. In this runtime view, it is either created or deleted based on the type of CR event.
+- **Decision Gateways:** Represented by the "X" diamond-shaped symbols, these gateways help route the workflow depending on the event type (Added or Deleted).
+- **Start and End Events:** The process begins when a CR event is detected, and it concludes when the relevant action (creating or deleting the ConfigMap) is completed.
+
+### **Scope of the Diagram:**
+The scope of this runtime view focuses on how Kubernetes handles Custom Resource events and reacts by either creating or deleting related resources (in this case, a ConfigMap). The BPMN diagram provides a clear and structured overview of the decision-making process based on the type of event.
+
+
 ## Steps
 
 ### Creating the Custom Resource Definition (CRD)
