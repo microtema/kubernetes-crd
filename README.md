@@ -139,9 +139,9 @@ Delete the custom resource and verify that the ConfigMap is deleted:
 
 `kubectl delete customconfigmaps microtema-custom-resource-instance`
 
-### Testing Results
+### Testing
 
-#### After CCM Creation:
+#### Create CCM:
 
 Controller Pod
 
@@ -168,7 +168,7 @@ CustomConfigmap
 | kube-root-ca.crt | 1 | 1h10s |
 | microtema-custom-resource-instance | 1 | 17s |
 
-#### After CCM Delete:
+#### Delete CCM:
 
 `kubectl delete ccm microtema-custom-resource-instance customconfigmap.microtema.de` 
 "microtema-custom-resource-instance" deleted
