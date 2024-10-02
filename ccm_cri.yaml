@@ -1,0 +1,6 @@
+apiVersion: microtema.de/v1
+kind: CustomConfigMap
+metadata:
+  name: microtema-custom-resource-instance
+spec:
+  foo-property: 'Microtema first CRD instance v2'
