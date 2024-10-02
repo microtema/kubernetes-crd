@@ -97,7 +97,7 @@ The scope of this runtime view focuses on how Kubernetes handles Custom Resource
 
 ### Creating the Custom Resource Instance (CR)
 
-`kubectl apply -f ccm_cri.yaml`
+```kubectl apply -f ccm_cri.yaml```
 
 ### Writing the Custom Controller
 
@@ -105,31 +105,31 @@ The scope of this runtime view focuses on how Kubernetes handles Custom Resource
 
 ### Dockerizing the Controller
 
-`docker build -t microtema/custom-controller:v1.0.0 .`
+```docker build -t microtema/custom-controller:v1.0.0 .```
 
 [./Dockerfile](./Dockerfile)
 
 ### Deploying the Controller
 
-`kubectl apply -f controller_deployment.yaml`
+```kubectl apply -f controller_deployment.yaml```
 
 ### Setting up RBAC for our custom controller(Role-Based Access Control)
 
-`kubectl apply -f clusterrole.yaml`
+```kubectl apply -f clusterrole.yaml```
 
-`kubectl apply -f clusterrolebinding.yaml`
+```kubectl apply -f clusterrolebinding.yaml```
 
-`kubectl apply -f serviceaccount.yaml`
+```kubectl apply -f serviceaccount.yaml```
 
 ### Testing the Example
 
 Ensure the controller pod is running: 
 
-`kubectl get pods`
+```kubectl get pods```
 
 Check if the ConfigMap is created: 
 
-`kubectl get configmaps`
+```kubectl get configmaps```
 
 Modify the custom resource and observe the ConfigMap changes: 
 
@@ -137,7 +137,7 @@ Modify the custom resource and observe the ConfigMap changes:
 
 Delete the custom resource and verify that the ConfigMap is deleted: 
 
-`kubectl delete customconfigmaps microtema-custom-resource-instance`
+```kubectl delete customconfigmaps microtema-custom-resource-instance```
 
 ### Testing
 
@@ -153,7 +153,7 @@ Controller Pod
 
 CustomConfigmap
 
-`kubectl get ccm`
+```kubectl get ccm```
 
 | NAME | DATA | AGE |
 | ---- | ---- | --- |
@@ -161,7 +161,7 @@ CustomConfigmap
 
 CustomConfigmap
 
-`kubectl get configmap`
+```kubectl get configmap```
 
 | NAME | DATA | AGE |
 | ---- | ---- | --- |
@@ -170,13 +170,13 @@ CustomConfigmap
 
 #### Delete CCM:
 
-`kubectl delete ccm microtema-custom-resource-instance customconfigmap.microtema.de` 
+```kubectl delete ccm microtema-custom-resource-instance customconfigmap.microtema.de``` 
 "microtema-custom-resource-instance" deleted
 
-`kubectl get ccm`
+```kubectl get ccm```
 No resources found in default namespace.
 
-`kubectl get configmap`
+```kubectl get configmap```
 
 | NAME | DATA | AGE |
 | ---- | ---- | --- |
