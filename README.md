@@ -34,7 +34,6 @@ Before we begin, ensure you have the following:
 
 [./custom_controller.py](./custom_controller.py)
 
-
 ### Dockerizing the Controller
 
 `docker build -t microtema/custom-controller:v1.0.0 .`
@@ -102,7 +101,7 @@ CustomConfigmap
 
 #### After CCM Delete:
 
-`kubectl delete ccm microtema-custom-resource-instance customconfigmap.anvesh.com` 
+`kubectl delete ccm microtema-custom-resource-instance customconfigmap.microtema.de` 
 "microtema-custom-resource-instance" deleted
 
 `kubectl get ccm`
